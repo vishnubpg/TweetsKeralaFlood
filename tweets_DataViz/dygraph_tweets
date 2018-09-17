@@ -1,0 +1,44 @@
+<!-- Version 0.2 -->
+<html>
+<head>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div id="graphdiv2"
+  style="width:960px; height:500px;"></div>
+<script type="text/javascript">
+    $(document).ready(function() {
+    g2 = new Dygraph(
+    document.getElementById("graphdiv2"),
+    "tweets_media.csv", // path to CSV file
+    {
+        width: 480,
+        height: 320,
+        highlightCircleSize: 2,
+        strokeWidth: 1,
+        strokeBorderWidth: null,
+        highlightSeriesOpts: {
+          strokeWidth: 3,
+          strokeBorderWidth: 1,
+          highlightCircleSize: 5}
+     }          // options
+  );
+        var onclick = function(ev) {
+          if (g2.isSeriesLocked()) {
+              g2.clearSelection();
+          } else {
+              g2.setSelection(g2.getSelection(), g2.getHighlightSeries(), true);
+          }
+      };
+    g2.updateOptions({clickCallback: onclick}, true);
+    g2.setSelection(false, 's005');
+    //console.log(g);
+  });
+</script>
+</body>
+</html>
